@@ -1,0 +1,19 @@
+DATE: Oct 6, 2010
+
+This is a simple patch to nginx-0.8.52.
+
+Assuming a setup where a response is proxied to a backend server, this patch
+does a simple check of the Server header for one of two specific tokens.  If they are 
+found the response is returned, otherwise the response is tossed.
+
+Rationale:  Simple security/validation check that the backend is what you think it is.
+
+TODO:  Put the patterns in a conf file (current hard-coded)
+
+$ wget http://nginx.org/download/nginx-0.8.52.tar.gz
+$ tar xvfz nginx-0.8.52.tar.gz
+$ cd nginx-0.8.52 
+$ patch -p1 < /home/nealr/Rubicon/code/github/nginx/nginx-0.8.52.TRP.patch 
+patching file src/core/nginx.h
+patching file src/http/ngx_http_upstream.c
+
